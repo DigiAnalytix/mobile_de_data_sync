@@ -1,0 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Sync Status</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1> Data Sync status </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th th:width="150px"> Job Execution Date</th>
+                    <th> Status</th>
+                    <th> Message</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${jobRecords.isEmpty()}">
+                    <td colspan="3"> No Data Available</td>
+                </tr>
+                <tr th:each="jobRecord : ${jobRecords}">
+                    <td><span
+                            th:text="${#temporals.format(jobRecord.getExecutedAt(), 'dd-MM-yyyy HH:mm')}"> Job
+                        Execution Date
+                    </span></td>
+                    <td><span th:text="${jobRecord.getStatus().name()}"> Status </span></td>
+                    <td><span th:text="${jobRecord.getMessage()}"> Status </span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
